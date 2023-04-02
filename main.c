@@ -103,22 +103,17 @@ int main(int argc, char** argv) {
 			zeros = 0;
 		}
 
-		/*
-		 * This looks good in a terminal, but doesn't behave well with file output
-		printf("\x1b[K\rByte %7ld, block %10ld (block_size %7ld)", pos, block, block_size);
-		fflush(stdout);
-		*/
 	}
 
 	printf("Copied %ld bytes\n", block * block_size + pos);
 
 	if (infile != STDIN_FILENO) if (close(infile) != 0) {
-		perror("Could not close input file");
+		perror("Error closing input file");
 		return 1;
 	}
 
 	if (close(outfile) != 0) {
-		perror("Could not close output file");
+		perror("Error closing output file");
 		return 1;
 	}
 
